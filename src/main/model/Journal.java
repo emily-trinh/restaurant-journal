@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // Represents a journal with given journal name and restaurants inputted by user.
@@ -10,16 +9,20 @@ public class Journal {
 
 
     // constructor
-    public Journal(String journalName) {
+    public Journal(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 
+
     // adds restaurant to journal, cannot add two restaurants with same name
-    public String addRestaurant(Restaurant restaurant) {
-        if (restaurants.contains(restaurant)) {
+    public List<Restaurant> addRestaurant(Restaurant restaurant) {
+        if (!restaurants.contains(restaurant)) {
             restaurants.add(restaurant);
-            return ("Restaurant added!");
-        } else {
-            return "Cannot add restaurants with already existing names!";
         }
+        return restaurants;
+    }
+
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
     }
 }

@@ -1,21 +1,20 @@
 package model;
 
+import java.util.Collections;
 
 import static jdk.nashorn.internal.objects.ArrayBufferView.length;
 
 // Represents a restaurant with given name, rating, and optional quick review.
-public class Restaurant {
+public class Restaurant implements Comparable<Restaurant> {
 
-    private final String name;
+    private String name;
     private Integer rating;
     private String review;
     private static Integer MAX_REVIEW_LENGTH;
 
     // REQUIRES: length of restaurant name > 0 and restaurant rating must be from [1, 10]
     // EFFECTS: constructs a restaurant to be added to journal
-    public Restaurant(String restaurantName, Integer restaurantRating) {
-        name = restaurantName;
-        rating = restaurantRating;
+    public Restaurant() {
         MAX_REVIEW_LENGTH = 50;
     }
 
@@ -23,12 +22,23 @@ public class Restaurant {
     // REQUIRES: review length > 0
     // MODIFIES: this
     // EFFECTS: adds review to restaurant and returns a success or failure message
-    public String addReview(String restaurantReview) {
+    public void addReview(String restaurantReview) {
         if (length(restaurantReview) <= MAX_REVIEW_LENGTH) {
-            return "Review added!";
-        } else {
-            return "Review too long!";
+            this.review = restaurantReview;
         }
+    }
+
+    public void addName(String newName) {
+        this.name = newName;
+    }
+
+    public void addRating(int newRating) {
+        this.rating = newRating;
+    }
+
+    @Override
+    public int compareTo(Restaurant o) {
+        return o.getRating() - this.rating;
     }
 
     public String getName() {
@@ -39,9 +49,6 @@ public class Restaurant {
         return rating;
     }
 
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
 
     public String getReview() {
         return review;
