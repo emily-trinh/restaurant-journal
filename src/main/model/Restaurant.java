@@ -1,5 +1,8 @@
 package model;
 
+// Citation: Rafael del Nero (2019), Sorting with Comparable and Comparator in Java, [source code]
+// https://www.infoworld.com/article/3323403/java-challengers-5-sorting-with-comparable-and-comparator-in-java.html
+
 
 // Represents a restaurant with name, rating, and review.
 public class Restaurant implements Comparable<Restaurant> {
@@ -19,8 +22,8 @@ public class Restaurant implements Comparable<Restaurant> {
     }
 
     // EFFECTS: compares rating of restaurant to others;
-    //          when restaurant rating > other restaurant rating, returns 1
-    //          when restaurant rating < other restaurant rating, returns -1
+    //          when restaurant rating > other restaurant rating, returns >= 1
+    //          when restaurant rating < other restaurant rating, returns <= -1
     //          when restaurant rating = other restaurant rating, returns 0
     @Override
     public int compareTo(Restaurant o) {

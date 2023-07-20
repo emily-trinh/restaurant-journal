@@ -7,6 +7,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+// Citation: CPSC 210 UBC (2022), TellerApp, [source code], https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
+
+// Citation: Rafael del Nero (2019), Sorting with Comparable and Comparator in Java, [source code]
+// https://www.infoworld.com/article/3323403/java-challengers-5-sorting-with-comparable-and-comparator-in-java.html
+
 
 // Journal application
 public class RestJournalApp {
@@ -160,6 +165,7 @@ public class RestJournalApp {
         System.out.printf("'%s' %n", selected.getRating() + " out of 10!");
     }
 }
+
 
 
 
