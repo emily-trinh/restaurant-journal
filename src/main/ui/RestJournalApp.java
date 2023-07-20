@@ -1,6 +1,5 @@
 package ui;
 
-import model.Journal;
 import model.Restaurant;
 
 import java.util.ArrayList;
@@ -60,7 +59,6 @@ public class RestJournalApp {
     // MODIFIES: this
     // EFFECTS: initializes journal
     private void init() {
-        Journal journal = new Journal(restaurants);
         restaurants = new ArrayList<>();
         restaurantNames = new ArrayList<>();
         input = new Scanner(System.in);
@@ -88,7 +86,6 @@ public class RestJournalApp {
         } else {
             System.out.println("Cannot add name with no length...\n");
         }
-
         System.out.print("Enter restaurant rating: 1-10\n");
         int rating = input.nextInt();
 
@@ -97,6 +94,9 @@ public class RestJournalApp {
         } else {
             System.out.println("Rating not on scale of 1-10...\n");
         }
+        System.out.print("Enter a short comment/review \n");
+        String review = input.next();
+        restaurant.addReview(review);
 
         restaurants.add(restaurant);
         restaurantNames.add(restaurant.getName());
@@ -113,8 +113,10 @@ public class RestJournalApp {
 
     private void sortRestaurants() {
         Collections.sort(restaurants);
+        for (Restaurant r : restaurants) {
+            System.out.print(r.getName() + "\n");
+        }
     }
-
 
     // EFFECTS: prompts user to select chequing or savings account and returns it
     private Restaurant selectRestaurant() {

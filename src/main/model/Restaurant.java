@@ -23,9 +23,7 @@ public class Restaurant implements Comparable<Restaurant> {
     // MODIFIES: this
     // EFFECTS: adds review to restaurant and returns a success or failure message
     public void addReview(String restaurantReview) {
-        if (length(restaurantReview) <= MAX_REVIEW_LENGTH) {
-            this.review = restaurantReview;
-        }
+        this.review = restaurantReview;
     }
 
     public void addName(String newName) {
@@ -38,7 +36,7 @@ public class Restaurant implements Comparable<Restaurant> {
 
     @Override
     public int compareTo(Restaurant o) {
-        return o.getRating() - this.rating;
+        return this.name.compareTo(o.name);
     }
 
     public String getName() {
