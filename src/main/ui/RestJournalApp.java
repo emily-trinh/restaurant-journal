@@ -39,7 +39,7 @@ public class RestJournalApp {
             }
         }
 
-        System.out.println("\nGoodbye!");
+        System.out.println("\nClosing the journal, goodbye!");
     }
 
     // MODIFIES: this
@@ -104,6 +104,7 @@ public class RestJournalApp {
         printRating(restaurant);
     }
 
+    // EFFECTS: displays restaurant info to user
     private void viewRestaurant() {
         Restaurant selected = selectRestaurant();
         System.out.print("\nRestaurant name: " + selected.getName());
@@ -111,6 +112,8 @@ public class RestJournalApp {
         System.out.print("\nComments: " + selected.getReview() + "\n");
     }
 
+    // modifies: this
+    // EFFECTS: sorts and prints list of restaurants by rating in descending order
     private void sortRestaurants() {
         Collections.sort(restaurants);
         for (Restaurant r : restaurants) {
@@ -118,7 +121,7 @@ public class RestJournalApp {
         }
     }
 
-    // EFFECTS: prompts user to select chequing or savings account and returns it
+    // EFFECTS: prompts user to select a restaurant and returns it
     private Restaurant selectRestaurant() {
         System.out.print(restaurantNames + "\n");
 
@@ -135,7 +138,7 @@ public class RestJournalApp {
         return lookup(finalSelection);
     }
 
-    // helper
+    // returns restaurant with given restaurant name
     private Restaurant lookup(String finalSelection) {
         Restaurant restSelected = null;
         for (Restaurant r : restaurants) {
@@ -147,13 +150,12 @@ public class RestJournalApp {
         return restSelected;
     }
 
-
-    // EFFECTS: prints balance of account to the screen
+    // EFFECTS: prints name of new restaurant entry to the screen
     private void printName(Restaurant selected) {
         System.out.printf("'%s' %n", "Restaurant name: " + selected.getName());
     }
 
-    // EFFECTS: prints balance of account to the screen
+    // EFFECTS: prints rating of new restaurant entry to the screen
     private void printRating(Restaurant selected) {
         System.out.printf("'%s' %n", selected.getRating() + " out of 10!");
     }

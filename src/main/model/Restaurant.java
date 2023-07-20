@@ -1,7 +1,7 @@
 package model;
 
 
-// Represents a restaurant with given name, rating, and optional quick review.
+// Represents a restaurant with name, rating, and review.
 public class Restaurant implements Comparable<Restaurant> {
 
     private String name;
@@ -18,10 +18,29 @@ public class Restaurant implements Comparable<Restaurant> {
         }
     }
 
+    // EFFECTS: compares rating of restaurant to others;
+    //          when restaurant rating > other restaurant rating, returns 1
+    //          when restaurant rating < other restaurant rating, returns -1
+    //          when restaurant rating = other restaurant rating, returns 0
+    @Override
+    public int compareTo(Restaurant o) {
+        return this.rating.compareTo(o.rating);
+    }
 
-    // REQUIRES: review length > 0
-    // MODIFIES: this
-    // EFFECTS: adds review to restaurant and returns a success or failure message
+    // getters
+    public String getName() {
+        return name;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    // setters
     public void addReview(String restaurantReview) {
         this.review = restaurantReview;
     }
@@ -33,23 +52,4 @@ public class Restaurant implements Comparable<Restaurant> {
     public void addRating(int newRating) {
         this.rating = newRating;
     }
-
-    @Override
-    public int compareTo(Restaurant o) {
-        return this.rating.compareTo(o.rating);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-
-    public String getReview() {
-        return review;
-    }
-
 }
