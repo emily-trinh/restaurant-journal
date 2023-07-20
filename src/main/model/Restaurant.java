@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Collections;
-
-import static jdk.nashorn.internal.objects.ArrayBufferView.length;
 
 // Represents a restaurant with given name, rating, and optional quick review.
 public class Restaurant implements Comparable<Restaurant> {
@@ -14,7 +11,6 @@ public class Restaurant implements Comparable<Restaurant> {
     // REQUIRES: rating is [1, 10]
     // EFFECTS: constructs a restaurant with given rating to be added to journal
     public Restaurant(int initialRating) {
-        rating = initialRating;
         if ((initialRating > 0) && (initialRating < 10)) {
             rating = initialRating;
         } else {
