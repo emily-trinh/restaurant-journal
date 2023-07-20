@@ -11,27 +11,27 @@ public class RestaurantTest {
 
     @BeforeEach
     void runBefore() {
-        testRestaurant = new Restaurant(0);
+        testRestaurant = new Restaurant(5);
     }
     @Test
     void testRestaurantConstructor() {
         assertNull(testRestaurant.getName());
-        assertEquals(0, testRestaurant.getRating());
+        assertEquals(5, testRestaurant.getRating());
         assertNull(testRestaurant.getReview());
     }
 
     @Test
     void testConstructorInvalidRatings() {
         Restaurant testRestaurantA = new Restaurant(15);
-
-        assertNull(testRestaurantA.getName());
-        assertEquals(0, testRestaurantA.getRating());
-        assertNull(testRestaurantA.getReview());
-
         Restaurant testRestaurantB = new Restaurant(-9);
 
+        assertNull(testRestaurantA.getName());
+        assertEquals(1, testRestaurantA.getRating());
+        assertNull(testRestaurantA.getReview());
+
+
         assertNull(testRestaurantB.getName());
-        assertEquals(0, testRestaurantB.getRating());
+        assertEquals(1, testRestaurantB.getRating());
         assertNull(testRestaurantB.getReview());
     }
 
@@ -58,5 +58,15 @@ public class RestaurantTest {
         testRestaurant.addReview("I liked the syrup on the pancakes.");
         assertEquals("I liked the syrup on the pancakes.",
                 testRestaurant.getReview());
+    }
+
+    @Test
+    void testCompareTo() {
+        Restaurant testRestaurantC = new Restaurant(10);
+        Restaurant testRestaurantD = new Restaurant(10);
+
+        assertEquals(-1, testRestaurant.compareTo(testRestaurantC));
+        assertEquals(1, testRestaurantC.compareTo(testRestaurant));
+        assertEquals(0, testRestaurantC.compareTo(testRestaurantD));
     }
 }

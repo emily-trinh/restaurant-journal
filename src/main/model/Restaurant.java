@@ -11,10 +11,10 @@ public class Restaurant implements Comparable<Restaurant> {
     // REQUIRES: rating is [1, 10]
     // EFFECTS: constructs a restaurant with given rating to be added to journal
     public Restaurant(int initialRating) {
-        if ((initialRating > 0) && (initialRating < 10)) {
+        if ((initialRating > 0) && (initialRating < 11)) {
             rating = initialRating;
         } else {
-            rating = 0;
+            rating = 1;
         }
     }
 
@@ -36,7 +36,7 @@ public class Restaurant implements Comparable<Restaurant> {
 
     @Override
     public int compareTo(Restaurant o) {
-        return this.name.compareTo(o.name);
+        return this.rating.compareTo(o.rating);
     }
 
     public String getName() {
