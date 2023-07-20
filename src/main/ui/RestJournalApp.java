@@ -77,7 +77,7 @@ public class RestJournalApp {
     // MODIFIES: this
     // EFFECTS: creates a new restaurant entry
     private void enterRestaurant() {
-        Restaurant restaurant = new Restaurant();
+        Restaurant restaurant = new Restaurant(0);
         System.out.print("Enter restaurant name\n");
         String name = input.next();
 

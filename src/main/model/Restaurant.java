@@ -10,12 +10,16 @@ public class Restaurant implements Comparable<Restaurant> {
     private String name;
     private Integer rating;
     private String review;
-    private static Integer MAX_REVIEW_LENGTH;
 
-    // REQUIRES: length of restaurant name > 0 and restaurant rating must be from [1, 10]
-    // EFFECTS: constructs a restaurant to be added to journal
-    public Restaurant() {
-        MAX_REVIEW_LENGTH = 50;
+    // REQUIRES: rating is [1, 10]
+    // EFFECTS: constructs a restaurant with given rating to be added to journal
+    public Restaurant(int initialRating) {
+        rating = initialRating;
+        if ((initialRating > 0) && (initialRating < 10)) {
+            rating = initialRating;
+        } else {
+            rating = 0;
+        }
     }
 
 
