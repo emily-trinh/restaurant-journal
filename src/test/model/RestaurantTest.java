@@ -13,6 +13,7 @@ public class RestaurantTest {
     void runBefore() {
         testRestaurant = new Restaurant(5);
     }
+
     @Test
     void testRestaurantConstructor() {
         assertNull(testRestaurant.getName());
