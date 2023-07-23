@@ -23,9 +23,10 @@ experience of our city *through* its food. A tracking application
 would have been an interesting tool to assist us in this journey.
 
 ### User Stories:
-- As a user, I want to be able to add a restaurant to my journal
+- As a user, I want to be able to add a restaurant as a journal entry to my journal
 - As a user, I want to be able to add a rating to a restaurant on a scale of 1-10
 - As a user, I want to be able to view my list of restaurants from highest to lowest rating
 - As a user, I want to be able to add a comment on a restaurant to leave a short review
+- As a user, I want to be able to view my journal entry details (rating, restaruant name, and comments)
 
  
