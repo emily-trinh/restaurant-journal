@@ -26,7 +26,7 @@ public class RestJournalApp {
     // EFFECTS: processes user input
     private void runJournal() {
         boolean keepGoing = true;
-        String command = null;
+        String command;
 
         init();
 
@@ -82,29 +82,24 @@ public class RestJournalApp {
     // MODIFIES: this
     // EFFECTS: creates a new restaurant entry
     private void enterRestaurant() {
-        Restaurant restaurant = new Restaurant(1);
+        Restaurant restaurant = new Restaurant(0);
         String name = "";
 
-        while (name.length() == 0) {
-            System.out.println("Enter restaurant name\n");
+        while ((name.length() == 0) | (journal.getRestaurantNames().contains(name)))  {
+            System.out.println("Enter new restaurant name");
             name = input.next();
         }
         restaurant.addName(name);
 
         int rating = 0;
-        while (((rating <= 0) | (rating >= 11))) {
-            System.out.println("Enter restaurant rating: 1-10\n");
-            rating = input.nextInt();
 
-        }
-        restaurant.addRating(rating);
+        restaurant.addRating(checkValidRating(rating));
 
         String comment = "";
 
         while (comment.length() == 0) {
-            System.out.println("Enter a short comment/review\n");
+            System.out.println("Enter a short comment/review");
             comment = input.next();
-
         }
         restaurant.addReview(comment);
 
@@ -112,6 +107,19 @@ public class RestJournalApp {
         printName(restaurant);
         printRating(restaurant);
         System.out.println(restaurant.getReview());
+    }
+
+    private int checkValidRating(int rating) {
+        while (((rating <= 0) | (rating >= 11))) {
+            System.out.println("Enter restaurant rating: 1-10");
+            input.nextLine();
+            while (!input.hasNextInt()) {
+                System.out.println("Please enter a number from 1-10");
+                input.nextLine();
+            }
+            rating = input.nextInt();
+        }
+        return rating;
     }
 
 
@@ -135,7 +143,7 @@ public class RestJournalApp {
         } else {
             journal.sortByRanking();
             for (Restaurant r : journal.getRestaurants()) {
-                System.out.print(r.getName() + "\n");
+                System.out.print(r.getName() + " - Rating: " + r.getRating() + "\n");
             }
         }
     }
@@ -143,16 +151,23 @@ public class RestJournalApp {
     private void editRestaurant() {
         Restaurant selected = selectRestaurant();
         if (selected != null) {
-            System.out.print("Enter new restaurant rating\n");
-            int newRating = input.nextInt();
-            selected.addRating(newRating);
+            int rating = 0;
+            while (((rating <= 0) | (rating >= 11))) {
+                System.out.print("Enter new restaurant rating: 1-10\n");
+                rating = input.nextInt();
+
+            }
+            selected.addRating(rating);
             System.out.print("New rating added!\n");
 
-            System.out.print("Enter new restaurant review\n");
-            String newComment = input.next();
-            selected.addReview(newComment);
-            System.out.print("New comment added!\n");
+            String comment = "";
 
+            while (comment.length() == 0) {
+                System.out.print("Enter new restaurant review\n");
+                comment = input.next();
+            }
+            selected.addReview(comment);
+            System.out.print("New comment added!\n");
         } else {
             System.out.println("No restaurants have been added to the journal!");
         }
@@ -168,7 +183,7 @@ public class RestJournalApp {
         } else {
             while (!(journal.getRestaurantNames().contains(finalSelection))) {
                 System.out.print(journal.getRestaurantNames() + "\n");
-                System.out.println("Please enter a restaurant name from the list\n");
+                System.out.println("Please enter a restaurant name from the list");
                 finalSelection = input.next();
             }
         }
