@@ -109,6 +109,8 @@ public class RestJournalApp {
         System.out.println(restaurant.getReview());
     }
 
+    // EFFECTS: ensures the user's input is an integer within the range of [1, 10]
+    //          returns the rating given by the user
     private int checkValidRating(int rating) {
         while (((rating <= 0) | (rating >= 11))) {
             System.out.println("Enter restaurant rating: 1-10");
@@ -148,6 +150,8 @@ public class RestJournalApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a new rating and comment given by user, replacing previous rating and comment for restaurant
     private void editRestaurant() {
         Restaurant selected = selectRestaurant();
         if (selected != null) {
