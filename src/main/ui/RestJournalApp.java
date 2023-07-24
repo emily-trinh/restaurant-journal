@@ -18,7 +18,7 @@ public class RestJournalApp {
     private Journal journal;
 
     // EFFECTS: runs the journal application
-    public RestJournalApp()  {
+    public RestJournalApp() {
         runJournal();
     }
 
@@ -52,6 +52,8 @@ public class RestJournalApp {
             enterRestaurant();
         } else if (command.equals("v")) {
             viewRestaurant();
+        } else if (command.equals("c")) {
+            editRestaurant();
         } else if (command.equals("t")) {
             printSortedRestaurants();
         } else {
@@ -72,6 +74,7 @@ public class RestJournalApp {
         System.out.println("\nSelect from:");
         System.out.println("\tn -> new restaurant entry");
         System.out.println("\tv -> view restaurant entry");
+        System.out.println("\tc -> change restaurant rating and review");
         System.out.println("\tt -> top rated restaurants");
         System.out.println("\tq -> quit");
     }
@@ -80,36 +83,42 @@ public class RestJournalApp {
     // EFFECTS: creates a new restaurant entry
     private void enterRestaurant() {
         Restaurant restaurant = new Restaurant(1);
-        System.out.print("Enter restaurant name\n");
-        String name = input.next();
+        String name = "";
 
-        if (name.length() > 0) {
-            restaurant.addName(name);
-        } else {
-            System.out.println("Cannot add name with no length...\n");
+        while (name.length() == 0) {
+            System.out.println("Enter restaurant name\n");
+            name = input.next();
         }
-        System.out.print("Enter restaurant rating: 1-10\n");
-        int rating = input.nextInt();
+        restaurant.addName(name);
 
-        if ((rating > 0) && (rating < 11)) {
-            restaurant.addRating(rating);
-        } else {
-            System.out.println("Rating not on scale of 1-10...\n");
+        int rating = 0;
+        while (((rating <= 0) | (rating >= 11))) {
+            System.out.println("Enter restaurant rating: 1-10\n");
+            rating = input.nextInt();
+
         }
-        System.out.print("Enter a short comment/review \n");
-        String review = input.next();
-        restaurant.addReview(review);
+        restaurant.addRating(rating);
+
+        String comment = "";
+
+        while (comment.length() == 0) {
+            System.out.println("Enter a short comment/review\n");
+            comment = input.next();
+
+        }
+        restaurant.addReview(comment);
 
         journal.addRestaurant(restaurant);
         printName(restaurant);
         printRating(restaurant);
+        System.out.println(restaurant.getReview());
     }
+
 
     // EFFECTS: displays restaurant info to user
     private void viewRestaurant() {
-        Restaurant selected = null;
-        if (selectRestaurant() != null) {
-            selected = selectRestaurant();
+        Restaurant selected = selectRestaurant();
+        if (selected != null) {
             System.out.print("\nRestaurant name: " + selected.getName());
             System.out.print("\nRestaurant rating: " + selected.getRating() + " out of 10!");
             System.out.print("\nComments: " + selected.getReview() + "\n");
@@ -128,6 +137,24 @@ public class RestJournalApp {
             for (Restaurant r : journal.getRestaurants()) {
                 System.out.print(r.getName() + "\n");
             }
+        }
+    }
+
+    private void editRestaurant() {
+        Restaurant selected = selectRestaurant();
+        if (selected != null) {
+            System.out.print("Enter new restaurant rating\n");
+            int newRating = input.nextInt();
+            selected.addRating(newRating);
+            System.out.print("New rating added!\n");
+
+            System.out.print("Enter new restaurant review\n");
+            String newComment = input.next();
+            selected.addReview(newComment);
+            System.out.print("New comment added!\n");
+
+        } else {
+            System.out.println("No restaurants have been added to the journal!");
         }
     }
 
