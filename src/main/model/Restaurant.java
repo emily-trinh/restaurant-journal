@@ -15,8 +15,7 @@ public class Restaurant implements Comparable<Restaurant>, Writable {
     private Integer rating;
     private String review;
 
-    // REQUIRES: rating is [1, 10]
-    // EFFECTS: constructs a restaurant with given rating to be added to journal
+    // EFFECTS: constructs a restaurant with given rating
     public Restaurant(int initialRating) {
         if ((initialRating > 0) && (initialRating < 11)) {
             rating = initialRating;

@@ -10,11 +10,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Citation: CPSC 210 UBC (2022), TellerApp, [source code], https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
+// REFERENCES:
+// CPSC 210 UBC (2022), Accessed July 18, 2023, TellerApp, [source code],
+//      https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
+//      for implementing and initializing ui
 
-// Citation: Rafael del Nero (2019), Sorting with Comparable and Comparator in Java, [source code]
-// https://www.infoworld.com/article/3323403/java-challengers-5-sorting-with-comparable-and-comparator-in-java.html
-
+// CPSC 210 UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
+//      https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+//      for saving and reading data
 
 // Journal application
 public class RestJournalApp {
@@ -166,7 +169,7 @@ public class RestJournalApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds a new rating and comment given by user, replacing previous rating and comment for restaurant
+    // EFFECTS: creates a new rating and comment given by user, replacing previous rating and comment for restaurant
     private void editRestaurant() {
         Restaurant selected = selectRestaurant();
         if (selected != null) {
@@ -222,7 +225,7 @@ public class RestJournalApp {
         return restSelected;
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the journal to file
     private void saveJournal() {
         try {
             jsonWriter.open();
@@ -235,7 +238,7 @@ public class RestJournalApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads journal from file
     private void loadJournal() {
         try {
             journal = jsonReader.read();

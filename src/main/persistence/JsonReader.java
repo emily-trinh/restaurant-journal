@@ -11,7 +11,11 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// CPSC 210 UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
+//      https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+//      for saving and reading data
+
+// Represents a reader that reads journal from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -20,7 +24,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads journal from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Journal read() throws IOException {
         String jsonData = readFile(source);
@@ -47,7 +51,7 @@ public class JsonReader {
         return j;
     }
 
-    // MODIFIES: wr
+    // MODIFIES: j
     // EFFECTS: parses restaurants from JSON object and adds them to journal
     private void addRestaurants(Journal j, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("restaurants");
@@ -57,7 +61,7 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
+    // MODIFIES: j
     // EFFECTS: parses restaurant from JSON object and adds it to journal
     private void addRestaurant(Journal j, JSONObject jsonObject) {
         String name = jsonObject.getString("name");

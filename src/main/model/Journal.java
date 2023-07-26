@@ -9,12 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
+// CPSC 210 UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
+//      https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+//      for saving and reading data
+
 public class Journal implements Writable {
     private List<Restaurant> restaurants;
     private List<String> restaurantNames;
     private String name;
 
-    // EFFECTS: constructs a new journal with no restaurants or restaurant names
+    // EFFECTS: constructs a new journal with given name and no restaurants or restaurant names
     public Journal(String name) {
         restaurants = new ArrayList<>();
         restaurantNames = new ArrayList<>();
@@ -60,7 +64,7 @@ public class Journal implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns restaurants in this journal as a JSON array
     private JSONArray restaurantsToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -71,7 +75,7 @@ public class Journal implements Writable {
         return jsonArray;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns names of restaurants in this journal as a JSON array
     private JSONArray restaurantNamesToJson() {
         JSONArray jsonArray = new JSONArray();
 

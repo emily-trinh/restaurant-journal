@@ -6,6 +6,10 @@ import org.json.JSONObject;
 
 import java.io.*;
 
+// CPSC 210 UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
+//      https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+//      for saving and reading data
+
 // Represents a writer that writes JSON representation of journal to file
 public class JsonWriter {
     private static final int TAB = 4;
@@ -25,7 +29,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of journal to file
     public void write(Journal j) {
         JSONObject json = j.toJson();
         saveToFile(json.toString(TAB));
