@@ -2,8 +2,12 @@ package ui;
 
 import model.Restaurant;
 import model.Journal;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Citation: CPSC 210 UBC (2022), TellerApp, [source code], https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
@@ -14,11 +18,16 @@ import java.util.Scanner;
 
 // Journal application
 public class RestJournalApp {
+    private static final String JSON_STORE = "./data/journal.json";
     private Scanner input;
     private Journal journal;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the journal application
-    public RestJournalApp() {
+    public RestJournalApp() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runJournal();
     }
 
@@ -56,6 +65,10 @@ public class RestJournalApp {
             editRestaurant();
         } else if (command.equals("t")) {
             printSortedRestaurants();
+        } else if (command.equals("s")) {
+            saveJournal();
+        } else if (command.equals("l")) {
+            loadJournal();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -64,7 +77,7 @@ public class RestJournalApp {
     // MODIFIES: this
     // EFFECTS: initializes journal
     private void init() {
-        journal = new Journal();
+        journal = new Journal("My restaurant journal");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -76,6 +89,8 @@ public class RestJournalApp {
         System.out.println("\tv -> view restaurant entry");
         System.out.println("\tc -> change restaurant rating and review");
         System.out.println("\tt -> top rated restaurants");
+        System.out.println("\ts -> save journal to file");
+        System.out.println("\tl -> load journal from file");
         System.out.println("\tq -> quit");
     }
 
@@ -205,6 +220,29 @@ public class RestJournalApp {
             }
         }
         return restSelected;
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveJournal() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(journal);
+            jsonWriter.close();
+            System.out.println("Saved " + journal.getJournalName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadJournal() {
+        try {
+            journal = jsonReader.read();
+            System.out.println("Loaded " + journal.getJournalName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
     // EFFECTS: prints name of new restaurant entry to the screen

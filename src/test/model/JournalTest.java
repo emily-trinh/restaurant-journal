@@ -10,13 +10,15 @@ public class JournalTest {
 
     @BeforeEach
     void runBefore() {
-        testJournal = new Journal();
+        testJournal = new Journal("Journal1");
     }
 
     @Test
     void testJournalConstructor() {
         assertEquals(0, testJournal.getRestaurants().size());
         assertEquals(0, testJournal.getRestaurantNames().size());
+        assertEquals("Journal1", testJournal.getJournalName());
+
     }
 
     @Test

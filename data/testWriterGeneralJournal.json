@@ -1,0 +1,19 @@
+{
+    "name": "My restaurant journal",
+    "restaurants": [
+        {
+            "review": "the coffee was good",
+            "name": "Crumb Cafe",
+            "rating": 7
+        },
+        {
+            "review": "life-changing steaks",
+            "name": "The Steakhouse",
+            "rating": 10
+        }
+    ],
+    "restaurant names": [
+        "Crumb Cafe",
+        "The Steakhouse"
+    ]
+}

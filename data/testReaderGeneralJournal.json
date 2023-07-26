@@ -1,0 +1,31 @@
+{
+  "restaurants": [
+    {
+      "name": "Crumb Cafe",
+      "rating": "7",
+      "review": "the coffee was good"
+    },
+    {
+      "name": "The Steakhouse",
+      "rating": "10",
+      "review": "life-changing steaks"
+    },
+    {
+      "name": "CandyLand",
+      "rating": "4",
+      "review": "too sweet for me"
+    }
+  ],
+  "restaurant names": [
+    {
+      "restaurant name": "Crumb Cafe"
+    },
+    {
+      "restaurant name": "The Steakhouse"
+    },
+    {
+      "restaurant name": "CandyLand"
+    }
+  ],
+  "name": "My restaurant journal"
+}

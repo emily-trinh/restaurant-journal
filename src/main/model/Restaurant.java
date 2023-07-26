@@ -5,8 +5,11 @@ package model;
 // https://www.infoworld.com/article/3323403/java-challengers-5-sorting-with-comparable-and-comparator-in-java.html
 
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a restaurant with name, rating, and review.
-public class Restaurant implements Comparable<Restaurant> {
+public class Restaurant implements Comparable<Restaurant>, Writable {
 
     private String name;
     private Integer rating;
@@ -55,5 +58,15 @@ public class Restaurant implements Comparable<Restaurant> {
 
     public void addRating(int newRating) {
         this.rating = newRating;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+
+        json.put("name", name);
+        json.put("rating", rating);
+        json.put("review", review);
+        return json;
     }
 }
