@@ -27,6 +27,6 @@ would have been an interesting tool to assist us in this journey.
 - As a user, I want to be able to view my list of restaurants from highest to lowest rating
 - As a user, I want to be able to view my the details of each journal entry
 - As a user, I want to be able to add a new rating and comment on a restaurant (seperate from the inital entry)
-- As a user, I want to be able to save my journal to file (if I so choose), including all restaurant information
-- As a user, I want to be able to load my jouranl from file (if I so choose), including all restaurant information
+- As a user, I want to be able to save the data in my journal to file (if I so choose)
+- As a user, I want to be able to load my journal data from file (if I so choose)
  
