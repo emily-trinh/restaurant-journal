@@ -13,6 +13,7 @@ import java.util.Collections;
 //      https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 //      for saving and reading data
 
+// Represents a Journal with a name
 public class Journal implements Writable {
     private List<Restaurant> restaurants;
     private List<String> restaurantNames;
