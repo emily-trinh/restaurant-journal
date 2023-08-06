@@ -68,4 +68,9 @@ public class Restaurant implements Comparable<Restaurant>, Writable {
         json.put("review", review);
         return json;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
