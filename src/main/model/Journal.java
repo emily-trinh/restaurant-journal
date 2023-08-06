@@ -38,7 +38,7 @@ public class Journal implements Writable {
 
     // MODIFIES: this
     // EFFECTS: sorts restaurants in journal from the highest ranking to lowest
-    public void sortByRanking() {
+    public void sortByRanking(List<Restaurant> restaurants) {
         Collections.sort(restaurants);
         Collections.reverse(restaurants);
     }

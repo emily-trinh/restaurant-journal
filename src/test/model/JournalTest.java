@@ -49,7 +49,7 @@ public class JournalTest {
         testJournal.addRestaurant(restaurantB);
         testJournal.addRestaurant(restaurantC);
 
-        testJournal.sortByRanking();
+        testJournal.sortByRanking(testJournal.getRestaurants());
         assertEquals(restaurantC, testJournal.getRestaurants().get(0));
         assertEquals(restaurantA, testJournal.getRestaurants().get(1));
         assertEquals(restaurantB, testJournal.getRestaurants().get(2));

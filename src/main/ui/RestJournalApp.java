@@ -161,7 +161,7 @@ public class RestJournalApp {
         if (journal.getRestaurants().size() == 0) {
             System.out.println("No restaurants have been added to the journal!");
         } else {
-            journal.sortByRanking();
+            journal.sortByRanking(journal.getRestaurants());
             for (Restaurant r : journal.getRestaurants()) {
                 System.out.print(r.getName() + " - Rating: " + r.getRating() + "\n");
             }

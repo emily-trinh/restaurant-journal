@@ -36,14 +36,20 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel addPanel;
     private JButton confirmAdditionButton;
     private JButton toMainButton = new JButton("Back to front page");
+    private JLabel nameLabel;
+    private JComboBox rating;
+    private JTextArea reviewArea;
 
     private JPanel viewAllPanel;
     private JList restaurantsJList;
 
     private JPanel viewRankingPanel;
+    private JList<Restaurant> sortedRestaurantsJList;
 
     private Restaurant currentRestaurant;
     private JFrame frame;
+    private JTextField restaurantName;
+
 
     public GUI() {
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -60,7 +66,9 @@ public class GUI extends JFrame implements ActionListener {
         initializeFrame();
         createMainButtons();
         createAddPanelButtons();
-
+        initializeAddPanel();
+        initializeViewAllPanel();
+        initializeViewRankingPanel();
         initializeMainPanel();
     }
 
@@ -73,7 +81,7 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     private void createMainButtons() {
-        addButton = new JButton("Add restaurant");
+        addButton = new JButton("Add restaurant to journal");
         viewAllButton = new JButton("View all restaurants");
         byRatingButton = new JButton("View restaurants by top rating");
         loadButton = new JButton("Load journal file");
@@ -83,6 +91,8 @@ public class GUI extends JFrame implements ActionListener {
         byRatingButton.setMargin(new Insets(10, 10, 10, 10));
         saveButton.setMargin(new Insets(10, 10, 10, 10));
         loadButton.setMargin(new Insets(10, 10, 10, 10));
+        toMainButton.setMargin(new Insets(10, 10, 10, 10));
+
     }
 
     private void initializeMainPanel() {
@@ -97,20 +107,17 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     private void initializeAddPanel() {
-        mainPanel.setVisible(false);
-        viewAllPanel.setVisible(false);
-        viewRankingPanel.setVisible(false);
         initializeGeneralPanel(addPanel);
 
-        JTextField restaurantName = new JTextField(50);
+        restaurantName = new JTextField(50);
         restaurantName.setMargin(new Insets(5, 10, 5, 10));
 
-        JLabel nameLabel = new JLabel("Enter restaurant name: ");
+        nameLabel = new JLabel("Enter restaurant name: ");
         addPanel.add(nameLabel, BorderLayout.WEST);
         addPanel.add(restaurantName);
 
         Integer[] validRatings = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        JComboBox rating = new JComboBox(validRatings);
+        rating = new JComboBox(validRatings);
         rating.setSelectedIndex(9);
         JLabel ratingLabel = new JLabel("Enter restaurant rating: ");
         addPanel.add(ratingLabel);
@@ -118,13 +125,12 @@ public class GUI extends JFrame implements ActionListener {
 
         createReviewArea();
 
-        createAddPanelButtons();
         addPanel.add(confirmAdditionButton);
         addPanel.add(toMainButton);
     }
 
     private void createReviewArea() {
-        JTextArea reviewArea = new JTextArea();
+        reviewArea = new JTextArea();
         reviewArea.setColumns(20);
         reviewArea.setRows(5);
         reviewArea.setLineWrap(true);
@@ -135,9 +141,9 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     private void createAddPanelButtons() {
-        confirmAdditionButton = new JButton("Add restaurant to journal");
+        confirmAdditionButton = new JButton("Add restaurant");
         confirmAdditionButton.setMargin(new Insets(10, 10, 10, 10));
-        toMainButton.setMargin(new Insets(10, 10, 10, 10));
+        confirmAdditionButton.addActionListener(e -> addRestaurantToJournal());
     }
 
     private void initializeViewAllPanel() {
@@ -150,20 +156,26 @@ public class GUI extends JFrame implements ActionListener {
         List<Restaurant> restaurants = journal.getRestaurants();
         restaurantsJList = new JList<>(restaurants.toArray(new Restaurant[restaurants.size()]));
         viewAllPanel.add(restaurantsJList);
+
+        viewAllPanel.add(toMainButton);
     }
 
     private void initializeViewRankingPanel() {
-        mainPanel.setVisible(false);
-        addPanel.setVisible(false);
-        viewAllPanel.setVisible(false);
-        viewRankingPanel.setVisible(true);
         initializeGeneralPanel(viewRankingPanel);
+
+        List<Restaurant> sortedRestaurants = journal.getRestaurants();
+        journal.sortByRanking(sortedRestaurants);
+        sortedRestaurantsJList = new JList<>(sortedRestaurants.toArray(new Restaurant[sortedRestaurants.size()]));
+        viewRankingPanel.add(sortedRestaurantsJList);
+
+        viewRankingPanel.add(toMainButton);
     }
 
     private void initializeGeneralPanel(JPanel panel) {
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
         frame.add(panel, BorderLayout.CENTER);
         panel.setBackground(Color.pink);
+        setVisible(false);
     }
 
     private void initializeFields() {
@@ -186,11 +198,15 @@ public class GUI extends JFrame implements ActionListener {
         loadButton.addActionListener(this);
         loadButton.setActionCommand("load");
 
-        confirmAdditionButton.addActionListener(this);
-        confirmAdditionButton.setActionCommand("confirm");
-
         toMainButton.addActionListener(this);
         toMainButton.setActionCommand("to main");
+    }
+
+    private void addRestaurantToJournal() {
+        Restaurant newRestaurant = new Restaurant(rating.getSelectedIndex() + 1);
+        newRestaurant.addName(restaurantName.getText());
+        newRestaurant.addName(reviewArea.getText());
+        journal.addRestaurant(newRestaurant);
     }
 
     private void goFrontPage() {
@@ -200,21 +216,37 @@ public class GUI extends JFrame implements ActionListener {
         viewRankingPanel.setVisible(false);
     }
 
-    private void addRestaurantToJournal() {
-        journal.addRestaurant(new Restaurant(10));
+    private void switchToAddPanel() {
+        mainPanel.setVisible(false);
+        viewAllPanel.setVisible(false);
+        viewRankingPanel.setVisible(false);
+        addPanel.setVisible(true);
     }
 
+    private void switchToViewAllPanel() {
+        mainPanel.setVisible(false);
+        viewAllPanel.setVisible(true);
+        viewRankingPanel.setVisible(false);
+        addPanel.setVisible(false);
+    }
+
+    private void switchToViewByRatingPanel() {
+        mainPanel.setVisible(false);
+        viewAllPanel.setVisible(false);
+        viewRankingPanel.setVisible(true);
+        addPanel.setVisible(false);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("add restaurant")) {
-            initializeAddPanel();
+            switchToAddPanel();
         }
         if (e.getActionCommand().equals("view all restaurants")) {
-            initializeViewAllPanel();
+            switchToViewAllPanel();
         }
         if (e.getActionCommand().equals("view by rating")) {
-            initializeViewRankingPanel();
+            switchToViewByRatingPanel();
         }
         if (e.getActionCommand().equals("save")) {
             saveJournal();
