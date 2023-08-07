@@ -70,4 +70,18 @@ public class RestaurantTest {
         assertEquals(1, testRestaurantC.compareTo(testRestaurant));
         assertEquals(0, testRestaurantC.compareTo(testRestaurantD));
     }
+
+    @Test
+    void testToString() {
+        Restaurant testRestaurant = new Restaurant(10);
+
+        assertEquals(null, testRestaurant.toString());
+
+        testRestaurant.addName("Pancake Land");
+        assertEquals("Pancake Land", testRestaurant.toString());
+
+        testRestaurant.addReview("Yummy in my tummy");
+        assertEquals("Pancake Land", testRestaurant.toString());
+
+    }
 }
