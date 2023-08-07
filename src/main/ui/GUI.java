@@ -83,7 +83,7 @@ public class GUI extends JFrame implements ActionListener {
         frame.setLocationRelativeTo(null);
     }
 
-    // MODIFIES: frame, cardPanel, this
+    // MODIFIES: this
     // EFFECTS: initializes all panels and adds them to card panel
     public void initializePanels() throws IOException {
         initializeMainPanel();
@@ -162,7 +162,7 @@ public class GUI extends JFrame implements ActionListener {
         addPanel.setVisible(true);
     }
 
-    // MODIFIES: addPanel
+    // MODIFIES: this
     // EFFECTS: constructs and adds review area (text area) for addPanel panel
     private void createReviewArea() {
         reviewArea = new JTextArea();
@@ -175,7 +175,7 @@ public class GUI extends JFrame implements ActionListener {
         addPanel.add(reviewArea);
     }
 
-    // MODIFIES: addPanel
+    // MODIFIES: this
     // EFFECTS: initializes and customizes buttons for addPanel panel
     private void createAddPanelButtons() {
         confirmAdditionButton = new JButton("Add restaurant");
@@ -188,7 +188,7 @@ public class GUI extends JFrame implements ActionListener {
         goToMainButton.addActionListener(e -> ((CardLayout) cardPanel.getLayout()).show(cardPanel, "main"));
     }
 
-    // MODIFIES: restaurantsJList, dmViewAll, this
+    // MODIFIES: this
     // EFFECTS: initializes panel where user can view all restaurants added to journal in order of when they
     //          were added
     private void initializeViewAllPanel() {
@@ -210,7 +210,7 @@ public class GUI extends JFrame implements ActionListener {
         viewAllPanel.setVisible(true);
     }
 
-    // MODIFIES: dm, sortedRestaurantsJList, this
+    // MODIFIES: this
     // EFFECTS: initializes panel where user can view all restaurants added
     //          to journal in order from the highest ranking to lowest
     private void initializeViewRankingPanel() {
@@ -233,7 +233,6 @@ public class GUI extends JFrame implements ActionListener {
         viewRankingPanel.setVisible(true);
     }
 
-    // MODIFIES: this
     // EFFECTS: helper method to customize a general panel
     private void initializeGeneralPanel(JPanel panel) {
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
@@ -241,7 +240,7 @@ public class GUI extends JFrame implements ActionListener {
         panel.setBackground(Color.pink);
     }
 
-    // MODIFIES: addButton, viewAllButton, byRatingButton, saveButton, loadButton
+    // MODIFIES: this
     // EFFECTS: adds action listeners and set action commands to main panel buttons
     private void addActions() {
         addButton.addActionListener(this);
@@ -260,7 +259,7 @@ public class GUI extends JFrame implements ActionListener {
         loadButton.setActionCommand("load");
     }
 
-    // MODIFIES: this, dmViewAll, dm
+    // MODIFIES: this
     // EFFECTS: gets user input and creates a new restaurant that is added to relevant lists in journal
     private void addRestaurantToJournal() {
         Restaurant newRestaurant = new Restaurant(rating.getSelectedIndex() + 1);
@@ -277,7 +276,7 @@ public class GUI extends JFrame implements ActionListener {
         dm.addAll(helperList);
     }
 
-    // MODIFIES: restaurantName, rating, reviewArea
+    // MODIFIES: this
     // EFFECTS: resets the input fields in addPanel
     private void switchToAddPanel() {
         ((CardLayout) cardPanel.getLayout()).show(cardPanel, "add");
