@@ -71,6 +71,6 @@ public class Restaurant implements Comparable<Restaurant>, Writable {
 
     @Override
     public String toString() {
-        return name;
+        return (name + " - Rating: " + rating);
     }
 }

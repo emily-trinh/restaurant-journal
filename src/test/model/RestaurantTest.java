@@ -75,13 +75,13 @@ public class RestaurantTest {
     void testToString() {
         Restaurant testRestaurant = new Restaurant(10);
 
-        assertEquals(null, testRestaurant.toString());
+        assertEquals("null - Rating: 10", testRestaurant.toString());
 
         testRestaurant.addName("Pancake Land");
-        assertEquals("Pancake Land", testRestaurant.toString());
+        assertEquals("Pancake Land - Rating: 10", testRestaurant.toString());
 
         testRestaurant.addReview("Yummy in my tummy");
-        assertEquals("Pancake Land", testRestaurant.toString());
+        assertEquals("Pancake Land - Rating: 10", testRestaurant.toString());
 
     }
 }

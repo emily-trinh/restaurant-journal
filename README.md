@@ -26,7 +26,21 @@ would have been an interesting tool to assist us in this journey.
 - As a user, I want to be able to add a restaurant as a journal entry to my journal with a rating, restaurant name, and a comment
 - As a user, I want to be able to view my list of restaurants from highest to lowest rating
 - As a user, I want to be able to view my the details of each journal entry
-- As a user, I want to be able to add a new rating and comment on a restaurant (seperate from the inital entry)
+- As a user, I want to be able to add a new rating and comment on a restaurant (separate from the initial entry)
 - As a user, I want to be able to save my journal to file (if I so choose), including all restaurant information
-- As a user, I want to be able to load my jouranl from file (if I so choose), including all restaurant information
+- As a user, I want to be able to load my journal from file (if I so choose), including all restaurant information
+
+### Instructions for Grader
+
+- You can generate the first required action related to adding Xs to a Y by
+going to the front page (if you are not already there) and clicking the button labelled "Add restaurant to journal"
+- You can generate the second required action related to adding Xs to a Y by
+going to the front page (if you are not already there) and clicking
+the button labelled "View restaurants by top rating". This lets the user view all the
+restaurants added to the journal in descending order by rating
+- You can locate my visual component by running the Main class. There should be a picture displayed
+on the default screen
+- You can save the state of my application by going to the front page and clicking the button labelled "Save Journal file"
+- You can reload the state of my application by going to the front page and clicking the button labelled 
+"Load journal file"
  

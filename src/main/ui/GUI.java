@@ -29,7 +29,7 @@ public class GUI extends JFrame implements ActionListener {
     private Journal journal;
 
     public static final int WIDTH = 600;
-    public static final int HEIGHT = 750;
+    public static final int HEIGHT = 550;
 
     private final JPanel mainPanel;
     private JButton addButton;
