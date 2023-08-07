@@ -176,13 +176,7 @@ public class GUI extends JFrame implements ActionListener {
         restaurantsJList = new JList<>(dmViewAll);
         restaurantsJList.setModel(dmViewAll);
         dmViewAll.addAll(List.of(restaurantsConvertedList));
-
-        sortedRestaurants = journal.getRestaurants();
-        finalSortedRestaurants = sortedRestaurants.toArray(new Restaurant[sortedRestaurants.size()]);
-        dm = new DefaultListModel<>();
-        sortedRestaurantsJList = new JList<>(dm);
-        sortedRestaurantsJList.setModel(dm);
-        dm.addAll(List.of(finalSortedRestaurants));
+        viewAllPanel.add(restaurantsJList);
 
         JButton goToMainButton = new JButton("Back to front page");
         goToMainButton.setMargin(new Insets(10, 10, 10, 10));
@@ -194,7 +188,7 @@ public class GUI extends JFrame implements ActionListener {
     private void initializeViewRankingPanel() {
         initializeGeneralPanel(viewRankingPanel);
 
-        sortedRestaurants = journal.getRestaurants();
+        sortedRestaurants = new ArrayList<>(journal.getRestaurants());
         journal.sortByRanking(sortedRestaurants);
         finalSortedRestaurants = sortedRestaurants.toArray(new Restaurant[sortedRestaurants.size()]);
         dm = new DefaultListModel<>();
@@ -240,11 +234,12 @@ public class GUI extends JFrame implements ActionListener {
         journal.addRestaurant(newRestaurant);
 
         dmViewAll.removeAllElements();
-        dmViewAll.addAll(restaurants);
+        dmViewAll.addAll(journal.getRestaurants());
 
-        journal.sortByRanking(sortedRestaurants);
+        List<Restaurant> helperList = new ArrayList<>(journal.getRestaurants());
+        journal.sortByRanking(helperList);
         dm.removeAllElements();
-        dm.addAll(sortedRestaurants);
+        dm.addAll(helperList);
     }
 
     private void goFrontPage() {
@@ -319,7 +314,7 @@ public class GUI extends JFrame implements ActionListener {
             System.out.println("Loaded " + journal.getJournalName() + " from " + JSON_STORE);
             restaurants.addAll(journal.getRestaurants());
             dmViewAll.addAll(journal.getRestaurants());
-            List<Restaurant> tempRestaurantList = journal.getRestaurants();
+            List<Restaurant> tempRestaurantList = new ArrayList<>(journal.getRestaurants());
             journal.sortByRanking(tempRestaurantList);
             dm.addAll(tempRestaurantList);
         } catch (IOException e) {
