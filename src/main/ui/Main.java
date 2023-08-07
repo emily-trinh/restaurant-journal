@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 // runs a new restaurant journal application
 public class Main {
@@ -10,6 +11,10 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to run application: file not found");
         } */
-        new GUI();
+        try {
+            new GUI();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
