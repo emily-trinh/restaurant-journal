@@ -128,7 +128,7 @@ public class GUI extends JFrame implements ActionListener {
         mainPanel.add(saveButton);
         mainPanel.add(loadButton);
 
-        BufferedImage mainMenuImage = ImageIO.read(new File("resources root/main menu image.jpg"));
+        BufferedImage mainMenuImage = ImageIO.read(new File("data/main menu image.jpg"));
         JLabel mainImageLabel = new JLabel(new ImageIcon(mainMenuImage));
         mainPanel.add(mainImageLabel);
 
@@ -317,7 +317,6 @@ public class GUI extends JFrame implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(journal);
             jsonWriter.close();
-            System.out.println("Saved " + journal.getJournalName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -328,7 +327,6 @@ public class GUI extends JFrame implements ActionListener {
     private void loadJournal() {
         try {
             journal = jsonReader.read();
-            System.out.println("Loaded " + journal.getJournalName() + " from " + JSON_STORE);
             restaurants.addAll(journal.getRestaurants());
             dmViewAll.addAll(journal.getRestaurants());
             List<Restaurant> tempRestaurantList = new ArrayList<>(journal.getRestaurants());
