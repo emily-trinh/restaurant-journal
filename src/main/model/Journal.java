@@ -33,6 +33,7 @@ public class Journal implements Writable {
         if (!restaurants.contains(newRestaurant)) {
             restaurants.add(newRestaurant);
             restaurantNames.add(newRestaurant.getName());
+            EventLog.getInstance().logEvent(new Event("Restaurant added to journal"));
         }
     }
 
@@ -41,6 +42,7 @@ public class Journal implements Writable {
     public void sortByRanking(List<Restaurant> restaurants) {
         Collections.sort(restaurants);
         Collections.reverse(restaurants);
+        EventLog.getInstance().logEvent(new Event("Restaurants sorted by rating"));
     }
 
     public List<Restaurant> getRestaurants() {
