@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Restaurant;
 import model.Journal;
 import persistence.JsonReader;
@@ -8,8 +10,7 @@ import persistence.JsonWriter;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -80,6 +81,14 @@ public class GUI extends JFrame implements ActionListener {
         frame.setSize(WIDTH, HEIGHT);
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println("\n" + event.toString());
+                }
+            }
+        });
         frame.setLocationRelativeTo(null);
     }
 
@@ -147,7 +156,7 @@ public class GUI extends JFrame implements ActionListener {
         addPanel.add(nameLabel, BorderLayout.WEST);
         addPanel.add(restaurantName);
 
-        Integer[] validRatings = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        Integer[] validRatings = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         rating = new JComboBox(validRatings);
         rating.setSelectedIndex(9);
         JLabel ratingLabel = new JLabel("Enter restaurant rating: ");
@@ -217,7 +226,6 @@ public class GUI extends JFrame implements ActionListener {
         initializeGeneralPanel(viewRankingPanel);
 
         List<Restaurant> sortedRestaurants = new ArrayList<>(journal.getRestaurants());
-        journal.sortByRanking(sortedRestaurants);
         Restaurant[] finalSortedRestaurants = sortedRestaurants.toArray(new Restaurant[sortedRestaurants.size()]);
         dm = new DefaultListModel<>();
         JList<Restaurant> sortedRestaurantsJList = new JList<>(dm);
@@ -266,10 +274,11 @@ public class GUI extends JFrame implements ActionListener {
         newRestaurant.addName(restaurantName.getText());
         newRestaurant.addReview(reviewArea.getText());
         journal.addRestaurant(newRestaurant);
+    }
 
-        dmViewAll.removeAllElements();
-        dmViewAll.addAll(journal.getRestaurants());
-
+    // MODIFIES: this
+    // EFFECTS: updates the view by ranking panel with new restaurants added
+    private void updateViewRanking() {
         List<Restaurant> helperList = new ArrayList<>(journal.getRestaurants());
         journal.sortByRanking(helperList);
         dm.removeAllElements();
@@ -277,7 +286,15 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: resets the input fields in addPanel
+    // EFFECTS: updates the view all restaurants panel with new restaurants added
+    private void updateViewAll() {
+        dmViewAll.removeAllElements();
+        dmViewAll.addAll(journal.getRestaurants());
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: resets the input fields in addPanel and shows add restaurant panel
     private void switchToAddPanel() {
         ((CardLayout) cardPanel.getLayout()).show(cardPanel, "add");
         restaurantName.setText("");
@@ -291,9 +308,11 @@ public class GUI extends JFrame implements ActionListener {
             switchToAddPanel();
         }
         if (e.getActionCommand().equals("view all restaurants")) {
+            updateViewAll();
             ((CardLayout) cardPanel.getLayout()).show(cardPanel, "all");
         }
         if (e.getActionCommand().equals("view by rating")) {
+            updateViewRanking();
             ((CardLayout) cardPanel.getLayout()).show(cardPanel, "ranking");
         }
         if (e.getActionCommand().equals("save")) {

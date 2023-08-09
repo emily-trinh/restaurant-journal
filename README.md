@@ -43,4 +43,21 @@ on the default screen
 - You can save the state of my application by going to the front page and clicking the button labelled "Save Journal file"
 - You can reload the state of my application by going to the front page and clicking the button labelled 
 "Load journal file"
+
+### Phase 4: Task 2
+
+Wed Aug 09 14:56:46 PDT 2023
+Restaurant added to journal
+
+Wed Aug 09 14:56:50 PDT 2023
+Restaurant added to journal
+
+Wed Aug 09 14:56:53 PDT 2023
+Restaurant added to journal
+
+Wed Aug 09 14:56:54 PDT 2023
+Restaurants sorted by rating
+
+Process finished with exit code 0
+
  
