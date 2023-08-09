@@ -80,6 +80,7 @@ public class GUI extends JFrame implements ActionListener {
     private void initializeFrame() {
         frame.setSize(WIDTH, HEIGHT);
         frame.setLayout(new BorderLayout());
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -89,7 +90,6 @@ public class GUI extends JFrame implements ActionListener {
                 }
             }
         });
-        frame.setLocationRelativeTo(null);
     }
 
     // MODIFIES: this
