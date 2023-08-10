@@ -1,7 +1,5 @@
 package persistence;
 
-import model.Event;
-import model.EventLog;
 import model.Journal;
 import model.Restaurant;
 
