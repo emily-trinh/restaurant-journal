@@ -60,4 +60,15 @@ Restaurants sorted by rating
 
 Process finished with exit code 0
 
+### Phase 4: Task 3
+To improve my design, I would break down my GUI class into smaller classes. The one class contains all my GUI components,
+including many fields. This can make my GUI class difficult to navigate. 
+Breaking it down would hopefully improve the cohesion of my design.
+Each panel in the GUI class has it own purpose and subcomponents, so they can each be separated into their own class.
+The GUI class itself can be responsible for initializing and displaying the frame and panels, saving the file, and
+loading the file. Additionally, to reduce repetitive code, I might create an interface that the panels would implement, 
+as they currently all have a common initialization method. 
+
+Furthermore, there is an unnecessary association between the GUI class and the Restaurant class. I would refactor 
+the GUI class to have it access the Journal's restaurants through the Journal itself.
  
