@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
 //      https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
-//      for saving and reading data and testing reader/writer classes
+
 
 class JsonWriterTest {
 
