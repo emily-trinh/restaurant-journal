@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// CPSC 210 UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
+// UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
 //      https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 //      for saving and reading data
 

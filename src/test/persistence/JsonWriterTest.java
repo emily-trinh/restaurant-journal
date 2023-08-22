@@ -9,16 +9,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// CPSC 210 UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
+// UBC (2021), Accessed July 24, 2023, JsonSerializationDemo, [source code],
 //      https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 //      for saving and reading data and testing reader/writer classes
 
-// the code in this class is based on a copied/pasted version of the code given in JsonSerializationDemo given by
-// the CPSC 210 course at UBC
-class JsonWriterTest extends JsonTest {
-    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
-    //write data to a file and then use the reader to read it back in and check that we
-    //read in a copy of what was written out.
+class JsonWriterTest {
+
 
     @Test
     void testWriterInvalidFile() {
