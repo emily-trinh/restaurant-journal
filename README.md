@@ -20,9 +20,9 @@ my friends and I had set for ourselves when we lived in the same
 city. We decided we would try to eat at all the restaurants 
 in our small city at least once. Ultimately, our goal was to
 experience of our city *through* its food. A tracking application 
-would have been an interesting tool to assist us in this journey.
+would have been a great tool to assist us in our journey.
 
-### User Stories:
+### User Stories
 - As a user, I want to be able to add a restaurant as a journal entry to my journal with a rating, restaurant name, and a comment
 - As a user, I want to be able to view my list of restaurants from highest to lowest rating
 - As a user, I want to be able to view my the details of each journal entry
@@ -30,7 +30,7 @@ would have been an interesting tool to assist us in this journey.
 - As a user, I want to be able to save my journal to file (if I so choose), including all restaurant information
 - As a user, I want to be able to load my journal from file (if I so choose), including all restaurant information
 
-### Instructions for Grader
+### Instructions for use
 
 - You can generate the first required action related to adding Xs to a Y by
 going to the front page (if you are not already there) and clicking the button labelled "Add restaurant to journal"
@@ -44,23 +44,8 @@ on the default screen
 - You can reload the state of my application by going to the front page and clicking the button labelled 
 "Load journal file"
 
-### Phase 4: Task 2
 
-Wed Aug 09 14:56:46 PDT 2023
-Restaurant added to journal
-
-Wed Aug 09 14:56:50 PDT 2023
-Restaurant added to journal
-
-Wed Aug 09 14:56:53 PDT 2023
-Restaurant added to journal
-
-Wed Aug 09 14:56:54 PDT 2023
-Restaurants sorted by rating
-
-Process finished with exit code 0
-
-### Phase 4: Task 3
+### Future Improvements
 To improve my design, I would break down my GUI class into smaller classes. The one class contains all my GUI components,
 including many fields. This can make my GUI class difficult to navigate. 
 Breaking it down would hopefully improve the cohesion of my design.
