@@ -19,16 +19,10 @@ A project surrounding restaurant experience is inspired by a goal
 my friends and I had set for ourselves when we lived in the same
 city. We decided we would try to eat at all the restaurants 
 in our small city at least once. Ultimately, our goal was to
-experience of our city *through* its food. A tracking application 
+experience of our city through its food. A tracking application 
 would have been a great tool to assist us in our journey.
 
-### User Stories
-- As a user, I want to be able to add a restaurant as a journal entry to my journal with a rating, restaurant name, and a comment
-- As a user, I want to be able to view my list of restaurants from highest to lowest rating
-- As a user, I want to be able to view my the details of each journal entry
-- As a user, I want to be able to add a new rating and comment on a restaurant (separate from the initial entry)
-- As a user, I want to be able to save my journal to file (if I so choose), including all restaurant information
-- As a user, I want to be able to load my journal from file (if I so choose), including all restaurant information
+[//]: # (### User Stories- As a user, I want to be able to add a restaurant as a journal entry to my journal with a rating, restaurant name, and a comment- As a user, I want to be able to view my list of restaurants from highest to lowest rating- As a user, I want to be able to view my the details of each journal entry- As a user, I want to be able to add a new rating and comment on a restaurant (separate from the initial entry)- As a user, I want to be able to save my journal to file (if I so choose), including all restaurant information- As a user, I want to be able to load my journal from file (if I so choose), including all restaurant information)
 
 ### Instructions for use
 
