@@ -22,20 +22,15 @@ in our small city at least once. Ultimately, our goal was to
 experience of our city through its food. A tracking application 
 would have been a great tool to assist us in our journey.
 
-[//]: # (### User Stories- As a user, I want to be able to add a restaurant as a journal entry to my journal with a rating, restaurant name, and a comment- As a user, I want to be able to view my list of restaurants from highest to lowest rating- As a user, I want to be able to view my the details of each journal entry- As a user, I want to be able to add a new rating and comment on a restaurant (separate from the initial entry)- As a user, I want to be able to save my journal to file (if I so choose), including all restaurant information- As a user, I want to be able to load my journal from file (if I so choose), including all restaurant information)
 
 ### Instructions for use
 
-- You can generate the first required action related to adding Xs to a Y by
-going to the front page (if you are not already there) and clicking the button labelled "Add restaurant to journal"
-- You can generate the second required action related to adding Xs to a Y by
-going to the front page (if you are not already there) and clicking
-the button labelled "View restaurants by top rating". This lets the user view all the
-restaurants added to the journal in descending order by rating
-- You can locate my visual component by running the Main class. There should be a picture displayed
-on the default screen
-- You can save the state of my application by going to the front page and clicking the button labelled "Save Journal file"
-- You can reload the state of my application by going to the front page and clicking the button labelled 
+- You can add entries by going to the front page (if you are not already there) and clicking the button labelled "Add restaurant to journal"
+- To let the user view all the restaurants added to the journal by rating in descending order, you can
+going to the front page (if you are not already there) and click
+the button labelled "View restaurants by top rating"
+- You can save the state of this application by going to the front page and clicking the button labelled "Save Journal file"
+- You can reload the state of thus application by going to the front page and clicking the button labelled 
 "Load journal file"
 
 
@@ -48,6 +43,5 @@ The GUI class itself can be responsible for initializing and displaying the fram
 loading the file. Additionally, to reduce repetitive code, I might create an interface that the panels would implement, 
 as they currently all have a common initialization method. 
 
-Furthermore, there is an unnecessary association between the GUI class and the Restaurant class. I would refactor 
-the GUI class to have it access the Journal's restaurants through the Journal itself.
+Furthermore,  I would refactor the GUI class to have it access the Journal's restaurants through the Journal itself.
  
